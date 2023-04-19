@@ -1,0 +1,21 @@
+npm create vite@latest
+npm install react-router-dom --save
+npm install @types/react-redux
+npm install @reduxjs/toolkit
+
+///////////////////////////////////////////////////////////////////////////////////////////
+<div className='inlined'>
+            <input id='rememberme' type='checkbox' checked={checkedRememberme} onClick={() => { if (checkedRememberme) { setCheckedRememberMe(false) } else { setCheckedRememberMe(true) } }} />
+            <h4 style={{ 'cursor': 'pointer' }}
+              onClick={
+                () => {
+                  if (checkedRememberme) {
+                    setCheckedRememberMe(false)
+                  } else {
+                    setCheckedRememberMe(true)
+                  }
+                }
+              }
+            >Remember me</h4>
+          </div>
+///////////////////////////////////////////////////////////////////////////////////////////

@@ -1,0 +1,21 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+.navbar{
+  display: fixed;
+  z-index: 1;
+  width: 48px;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: black;
+  box-shadow: 4px 4px rgba(23, 23, 23, 0.586);
+  transition: width 400ms;
+}
+.navbar:hover{
+  width: 300px;
+}
