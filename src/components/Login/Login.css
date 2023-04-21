@@ -1,6 +1,6 @@
 .Login {
   opacity: 0;
-  transition: opacity 300ms;
+  transition: opacity 150ms;
 }
 
 .loaded {
@@ -26,23 +26,16 @@
   margin: 0;
 }
 
-
-#rememberme {
-  height: 18px;
-  width: 18px;
-  padding: 0;
-  accent-color: #535bf2;
-}
-
 .bitdown {
   margin-top: 10px !important;
 }
 
-h6{
+h6 {
   margin: 0;
   padding: 15px 0 0 0;
 }
 
+h2,
 h4,
 h5 {
   padding: 0;
@@ -50,7 +43,7 @@ h5 {
 }
 
 .inlined {
-  margin-top: 15px;
+  margin: 0;
   display: inline-flex;
   height: fit-content !important;
   width: fit-content !important;
@@ -96,24 +89,10 @@ table {
   cursor: pointer;
 }
 
-#lLogo {
-  z-index: 2;
-  width: 22px;
-  height: 22px;
-  position: relative;
-  bottom: 0px;
-}
-
-#fLogo,
-#gLogo {
-  width: 32px;
-  height: 32px;
-  position: relative;
-  bottom: 0px;
-}
 
 #username,
 #password {
+  width: 190px;
   padding-left: 46px !important;
   padding-right: 46px !important;
   margin-left: auto !important;
@@ -128,7 +107,7 @@ table {
   width: 99% !important;
 }
 
-.register {
+.gotoregister {
   width: fit-content;
   height: fit-content;
   margin-top: 20px;
@@ -137,17 +116,16 @@ table {
   text-align: center !important;
 }
 
-.oAuthBtn {
-  width: 80px;
-  height: 50px;
-  margin-right: 5px;
-}
-
-#authenticate {
-  width: 200px;
+.authenticate {
+  width: 160px;
+  border-radius: 20px !important;
   cursor: pointer;
+  transition: background-colr 200ms color 200ms;
 }
-
+.authenticate:hover{
+  background-color: #535bf2;
+  color: black;
+}
 .forgot {
   position: relative;
   right: 90px;

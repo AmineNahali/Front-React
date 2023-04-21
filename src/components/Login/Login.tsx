@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { snack, sleep } from "../../App";
 import { } from '@reduxjs/toolkit';
 import Footer from '../misc/Footer';
+import LoginNavbar from './LoginNavbar';
 
 
 var visibility = visibleNo;
@@ -77,11 +78,12 @@ const Login = () => {
 
   return (
     <>
+    <LoginNavbar />
       <div id='Login' className="Login" onLoad={() => { document.querySelector(".Login")?.classList.add("loaded"); }}>
         <div style={{ 'paddingBottom':'10px','opacity': wrongCreds, 'color': '#D21312' }}>please check your credentials</div>
         <div className="login" style={{ 'position': 'relative', 'left': positionLeft }}>
           <form id='loginForm' autoComplete='off'>
-            <h2 className='titleLogin'>Login</h2>
+            <h3 className='titleLogin'>Login</h3>
             <table id='loginTable'>
               <tbody>
                 <tr>
@@ -129,7 +131,7 @@ const Login = () => {
             </div>
             <a className='forgot' onClick={() => { nav('/recover'); }}>Forgot password</a>
             <br></br>
-            <input className='button' type="button" id='authenticate' value='Authenticate' disabled={buttonEnabled} 
+            <input className='authenticate' type="button" value='Authenticate' disabled={buttonEnabled} 
               onClick={()=>{
                 setButtonEnabled(true);
                 authenticate();
@@ -137,11 +139,11 @@ const Login = () => {
               }} />
           </form>
 
-          <div className='register'>
+          <div className='gotoregister'>
             Need an account ? <a onClick={() => { nav('/register') }} >Register now</a><br />
           </div>
         </div>
-        <h6>Hard2Hire - {year}</h6>
+        <h6>X4Hire - {year}</h6>
       </div>
       <Footer />
     </>

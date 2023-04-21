@@ -1,0 +1,26 @@
+.LoginNavbar {
+    z-index: 5;
+    height: 64px;
+    width: 100vw;
+    position: fixed;
+    left: 0;
+    top: 0;
+}
+.navTable{
+    width: 98%;
+    height: 100%;
+}
+.navLogo{
+    width: 170px;
+    background: url("./../../assets/logo.png");
+    background-size: 90% 70%;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: contrast(100%);
+    transition: scale 200ms;
+}
+.navLogo:hover{
+    cursor: pointer;
+    background-position: center;
+    scale: 0.95;
+}
