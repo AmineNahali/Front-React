@@ -1,0 +1,15 @@
+.homepage {
+    transition: opacity 300ms;
+}
+
+.home {
+    width: 100%;
+    padding-top: 64px;
+    padding-bottom: 64px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h3{
+    color: lightgray;
+}

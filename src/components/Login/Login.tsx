@@ -5,24 +5,22 @@ import usrLogo from '../../assets/user-circle-svgrepo-com.svg';
 import visibleYes from "../../assets/nothiddenpw.svg";
 import visibleNo from "../../assets/hiddenpw.svg";
 import { useNavigate } from 'react-router-dom';
-import { snack, sleep } from "../../App";
+import { sleep } from "../../App";
 import { } from '@reduxjs/toolkit';
-import Footer from '../misc/Footer';
-import LoginNavbar from './LoginNavbar';
 
 
 var visibility = visibleNo;
-
 const Login = () => {
 
+  const [bx, setBx]= useState('');
   const loginNavigator = useNavigate();
   const [username, setUserName] = useState('');
   const [password, setPassWord] = useState('');
   const [borderInput, setBorderInput] = useState('');
   const [passwordShown, setPasswordShown] = useState(false);
   const [positionLeft, setPositionLeft] = useState('0');
-  const [wrongCreds, setwrongCreds] = useState('0');
   const [buttonEnabled, setButtonEnabled] = useState(false);
+  const [logOpacity, setLogOpacity] = useState('0');
 
   const date = new Date();
   let year = date.getFullYear();
@@ -39,16 +37,16 @@ const Login = () => {
     setTimeout(() => {
       document.querySelector(".Login")?.classList.add("hidden");
       loginNavigator(r);
-    }, 300);
+    }, 100);
   }
 
   const authenticate = async () => {
+    setButtonEnabled(true);
     if (login(username, password)) { //1: successful login
-      snack();
       nav('/');
     }
     else { //2: failed login
-      setwrongCreds('1');//show : "check your credentials" warning 
+      setBx('0px 0px 0.5rem #D21312');
       setBorderInput('2px solid #D21312');
       setUserName(''); setPassWord('');
       var offset: number = 0;
@@ -74,27 +72,27 @@ const Login = () => {
         i++;
       }
     }
+    setButtonEnabled(false);
+    setBx('');
   }
-
+  setTimeout(() => {
+    setLogOpacity('1');
+  }, 150);
   return (
     <>
-    <LoginNavbar />
-      <div id='Login' className="Login" onLoad={() => { document.querySelector(".Login")?.classList.add("loaded"); }}>
-        <div style={{ 'paddingBottom':'10px','opacity': wrongCreds, 'color': '#D21312' }}>please check your credentials</div>
-        <div className="login" style={{ 'position': 'relative', 'left': positionLeft }}>
+      <div id='Login' className="Login" style={{'opacity':logOpacity}}>
+        <div className="login">
           <form id='loginForm' autoComplete='off'>
-            <h3 className='titleLogin'>Login</h3>
-            <table id='loginTable'>
+            <h4 className='titleLogin'>Login to X4Hire</h4>
+            <table className='loginTable'>
               <tbody>
                 <tr>
-                  <td className="nilll">
-                    <img id='usernameLogo' src={usrLogo} />
-                  </td>
                   <td className="filll">
-                    <input itemID='username' id='username' type='text' placeholder='username' value={username}
+                    <img id='usernameLogo' src={usrLogo} />
+                    <input autoFocus itemID='username' id='username' type='text' placeholder='username' value={username}
                       style={{ 'border': borderInput }}
                       onChange={event => setUserName(event.target.value)}
-                      onInput={() => { setwrongCreds('0'); setBorderInput(''); }}
+                      onInput={() => { setBorderInput(''); }}
                       onMouseOver={() => { setBorderInput(''); }}
                       onKeyDown={(event: React.KeyboardEvent) => {
                         if (event.key == "Enter") {
@@ -104,15 +102,16 @@ const Login = () => {
                     />
                   </td>
                 </tr>
+              </tbody>
+            </table>
+            <table className='loginTable'>
+              <tbody>
                 <tr>
-                  <td className="nilll">
-                    <img id='passwordLogo' src={pwdLogo} />
-                  </td>
                   <td className="filll">
+                    <img id='passwordLogo' src={pwdLogo} />
                     <input itemID='password' id='password' placeholder='password' type={passwordShown ? "text" : "password"} value={password}
                       style={{ 'border': borderInput }}
                       onChange={event => setPassWord(event.target.value)}
-                      onInput={() => { setwrongCreds('0') }}
                       onMouseOver={() => { setBorderInput(''); }}
                       onKeyDown={(event: React.KeyboardEvent) => {
                         if (event.key == "Enter") {
@@ -129,27 +128,26 @@ const Login = () => {
             <div className='zero'>
               <img id='pwdVisiblityLogo' src={visibility} onClick={() => { if (passwordShown) { setPasswordShown(false); visibility = visibleNo; } else { setPasswordShown(true); visibility = visibleYes; } }} />
             </div>
-            <a className='forgot' onClick={() => { nav('/recover'); }}>Forgot password</a>
+            <a className='forgot anchor' onClick={() => { nav('/recover'); }}>Forgot password</a>
             <br></br>
-            <input className='authenticate' type="button" value='Authenticate' disabled={buttonEnabled} 
-              onClick={()=>{
+            <input style={{ 'position': 'relative', 'left': positionLeft,'boxShadow':bx}} className='authenticate' id='authenticate' type="button" value='Authenticate' disabled={buttonEnabled}
+              onClick={() => {
+                
                 setButtonEnabled(true);
                 authenticate();
                 setButtonEnabled(false);
+                
               }} />
           </form>
-
-          <div className='gotoregister'>
-            Need an account ? <a onClick={() => { nav('/register') }} >Register now</a><br />
-          </div>
         </div>
-        <h6>X4Hire - {year}</h6>
+        <div className='gotoregister'>
+          Need an account ? <a style={{'marginLeft':'10px'}} className='anchor' onClick={() => { nav('/register') }} >Register now</a><br />
+        </div>
+        <div style={{ 'fontSize': '12px', 'marginTop': '10px' }}>
+          X4Hire - {year}
+        </div>
       </div>
-      <Footer />
     </>
   )
 }
 export default Login;
-
-
-

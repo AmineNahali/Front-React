@@ -1,15 +1,18 @@
 .Register {
     transition: opacity 150ms;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .register {
-    padding-top: 10px !important;
-    padding-bottom: 30px !important;
+    margin-left: auto;
+    margin-right: auto;
     width: fit-content;
     height: fit-content;
-    background-color: rgb(40, 40, 40);
-    border-radius: 10px;
-    box-shadow: 2px 2px 20px 5px #535bf213;
+    background-color: #242424;
+    border-radius: 5px;
 }
 
 .registerInput {
@@ -20,48 +23,69 @@
     font-size: 1em;
     font-weight: 500;
     font-family: inherit;
-    background-color: #1e1e1e;
     transition: border 0.25s;
     width: 200px;
+    position: relative;
+    right: 10px;
 }
 .registerInput:hover {
     border: 2px solid #646cff;
 }
-label{
+.redAsterisk{
     font-size: 26px !important;
-    color: #D21312;
+    color: #ED2B2A !important;
+    position: relative;
+    left: 250px;
 }
 .continueReg{
-    margin-top: 12px;
-    border-radius: 5px;
     border: 2px solid transparent;
     padding: 0.6em 1.2em;
     font-size: 1em;
     font-weight: 500;
     font-family: inherit;
-    background-color: #1e1e1e;
-    
+    background-color: rgb(19, 19, 19);
     width: 160px;
-    margin-right:18px ;
-    cursor: pointer;
-    border-radius: 20px;
+    border-radius: 5px;
 }
 .continueReg:hover{
-    background-color: #646cff;
-    color: black;
+    box-shadow: 0px 0px 0.5rem #535bf2;
 }
 
 h3{
     margin: 0px 20px 8px 0 !important;
     padding: 0;
 }
-h6{
+.warningInput{
+    font-weight: lighter;
+    font-size: 14px;
     margin: 2px 20px 0 0;
     padding: 0;
 }
 .tableReg{
-    width: 100%;
-    display: flex;
-    align-content: center;
-    justify-content: center;
+    margin: 0;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.lineAccept{
+    width: 250px;
+    font-size: 13px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+.minilink {
+    color :#d27f12;
+    text-decoration: underline;
+}
+.minilink:hover {
+    color :#eaa345;
+    cursor:pointer;
+}
+.fs{
+    display:flex;
+    flex-direction: row;
+    width: fit-content;
+
 }

@@ -6,7 +6,6 @@ const Recover = () => {
     return(
         <>
             <LoginNavbar />
-            <Footer />
         </>
     )
 }
