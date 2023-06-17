@@ -1,15 +1,74 @@
 .homepage {
     transition: opacity 300ms;
+    width: 100vw;
+    padding: 0;
+    margin: 0;
 }
 
 .home {
-    width: 100%;
-    padding-top: 64px;
-    padding-bottom: 64px;
+    position: absolute;
+    top: 64px;
+    left: 0;
+    width: 100vw !important;
+    padding: 0;
+    margin: 0;
+}
+
+h3 {
+    color: lightgray;
+}
+
+.screen1 {
+    padding: 0;
+    width: 1460px;
+    height: 550px;
+    margin-top: 10px;
     margin-left: auto;
     margin-right: auto;
 }
 
-h3{
-    color: lightgray;
+.screen1Table {
+    width: 603px;
+    height: 340px;
+    background: url("./../../assets/landingpg/bg.png");
+    background-position: center;
+    background-size: 100% 100%;
+    filter: contrast(100%);
+}
+
+.perfec {
+    text-align: left;
+    color: #535bf2;
+    font-size: 56px !important;
+    transition: transform 400ms;
+    margin: 0;
+    padding: 0;
+    height: 64px !important;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.perfec2 {
+    text-align: left;
+    font-size: 24px !important;
+}
+
+.t1 {
+    transition: transform 400ms;
+    height: 460px;
+    padding: 0;
+}
+.s1Right{
+    width: 603px;
+}
+.s1Left{
+    width: 540px !important;
+}
+.getStarted {
+    cursor: pointer;
+    float: left;
+    height: 48px;
+    width: 200px;
+    background-color: rgba(0,0,0,0);
+    border-radius: 24px;
+    border:  solid 3px #535bf2;
 }

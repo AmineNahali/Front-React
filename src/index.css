@@ -1,7 +1,7 @@
 :root {
   font-family:Helvetica, Arial, sans-serif;
   line-height: 1.5;
-  font-weight: 400;
+  
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
@@ -20,6 +20,7 @@
 * {
   user-select: none;
   text-decoration:none;
+  font-size: 14px;
 }
 
 input{
@@ -51,10 +52,15 @@ input{
 
 
 body {
-  /*background: linear-gradient(#9198e5,#000000);*/
+  background: linear-gradient(#9198e5,#000000);
   padding: 0;
   margin: 0;
-  width: 100%;
+  min-width: 460px;
+  width: 100vw !important;
+  height: 100vh !important;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 h1 {

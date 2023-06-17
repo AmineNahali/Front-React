@@ -2,8 +2,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./LoginNavbar.css";
 
-
-
 const LoginNavbar = () => {
     const nav2 = useNavigate();
     
@@ -34,10 +32,10 @@ const LoginNavbar = () => {
                         <td>
                             <div className="registerOptions">
                                 <div className="btx">
-                                    <input type='button' className="bt1" value="LOGIN" 
+                                    <input type='button' className="bt1" value="Log In" 
                                     onClick={()=>{nav2("/login")}}
                                     />
-                                    <input type='button' className="bt2" value="JOIN"  
+                                    <input type='button' className="bt2" value="Join"  
                                     onClick={()=>{nav2("/register")}}
                                     />
                                 </div>

@@ -1,12 +1,15 @@
 .Login {
   /*background: rgba(0, 0, 0, 0);*/
   z-index: 1;
+  padding: 0 !important;
+  margin: 0 !important;
   width: 100%;
-  opacity: 0;
+  min-width: 480px;
+  height: fit-content;
   position: absolute;
-  left: 0;
   top: 50%;
   transform: translateY(-50%);
+  opacity: 0;
   transition: opacity 150ms;
 }
 
@@ -63,8 +66,8 @@ table {
 #usernameLogo,
 #passwordLogo {
   z-index: 2;
-  width: 30px;
-  height: 30px;
+  width: 28px;
+  height: 28px;
   position: relative;
   left: 24px;
   top: 10px;
@@ -89,8 +92,8 @@ table {
   width: 26px;
   height: 26px;
   position: relative;
-  left: 275px !important;
-  bottom: 39px !important;
+  left: 272px !important;
+  bottom: 37px !important;
   border-radius: 20px;
   transition: background-color 300ms;
 }
