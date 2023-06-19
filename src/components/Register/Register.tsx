@@ -1,14 +1,34 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import Login from "../Login/Login";
-import LoginNavbar from "../Login/LoginNavbar";
+import LoginNavbar from "../Login/Navbar";
 import Footer from "../misc/Footer";
-import "./Register.css"
-var red:string = "#ED2B2A"
-const Register = () => {
+import "./Register.css";
 
+import bg0 from "./../../assets/tiles/0.png";
+import bg1 from "./../../assets/tiles/1.png";
+import bg2 from "./../../assets/tiles/2.png";
+import bg3 from "./../../assets/tiles/3.png";
+import bg4 from "./../../assets/tiles/4.png";
+import bg5 from "./../../assets/tiles/5.png";
+import bg6 from "./../../assets/tiles/6.png";
+import bg7 from "./../../assets/tiles/7.png";
+
+var bgs:string[] = [bg1,bg2,bg3,bg4,bg5,bg6,bg7,bg0];
+
+var red:string = "#ED2B2A"
+
+const Register = () => {
+    
     const date = new Date();
     let year = date.getFullYear();
-    
+
+    const [bg, setBg] = useState(bg2);
+    const [bgp, setBgp] = useState(0);
+    var bgdist:number = 1200;
+    const [bgx, setBgX] = useState(0);
+    const [bgy, setBgY] = useState(0);
+    const [parodyWidth, setParodyWidth] = useState(0);
+
     const [regOpacity, setRegOpacity] = useState('0');
 
     //Input content/state
@@ -41,10 +61,34 @@ const Register = () => {
     const [colorPass       , setColorPass      ] = useState("white");
     const [colorPassRepeat , setColorPassRepeat] = useState("white");
     
-    let i:number = 10;
     setTimeout(() => {
         setRegOpacity('1');
+        setParodyWidth(400);
     }, 100);
+
+    var animation1:number = setInterval(()=>{ //Change background animation
+        switch(bg){
+            case bg2: setBg(bg3);break;
+            case bg3: setBg(bg4);break;
+            case bg4: setBg(bg5);break;
+            case bg5: setBg(bg6);break;
+            case bg6: setBg(bg7);break;
+            case bg7: setBg(bg2);break;
+        }
+        clearInterval(animation1);
+    },5000);
+
+    var animation2:number = setInterval(()=>{ // Move background animation
+        setBgp(bgp+1);
+		if(bgp <= (bgdist/6)){setBgX(bgx+1);setBgY(bgy+1);}
+		if(bgp >(bgdist/6) && bgp <= (bgdist/6)*2){setBgX(bgx+1);}
+		if(bgp >(bgdist/6)*2 && bgp <= (bgdist/6)*3){setBgX(bgx+1);setBgY(bgy-1);}
+		if(bgp >(bgdist/6)*3 && bgp <= (bgdist/6)*4){setBgX(bgx-1);setBgY(bgy-1);}
+		if(bgp >(bgdist/6)*4 && bgp <= (bgdist/6)*5){setBgX(bgx-1);}
+		if(bgp >(bgdist/6)*5 && bgp < bgdist){setBgX(bgx-1);setBgY(bgy+1);}
+		if(bgp == bgdist){setBgp(0);}
+        clearInterval(animation2);
+    },30);
 
     return (
         <>
@@ -54,11 +98,10 @@ const Register = () => {
         <table className="tableReg">
         <tbody>
         <tr>
-            {/*
-            <td style={{ 'width': '430px' }}>
+            <td className="parodyleft" style={{width:`${parodyWidth}px`,backgroundImage:"url(" + bg + ")", backgroundPosition:`${bgx}px ${bgy}px`}}>
 
-            </td>*/}
-            <td style={{ 'width': '344px' }}>
+            </td>
+            <td className="parodyright" style={{ 'width': '344px' }}>
                 <h3 className='titleLogin'>Join us !</h3> 
             
                 {/* USERNAME */}
@@ -146,7 +189,7 @@ const Register = () => {
           X4Hire - {year}
         </div>
         </div>
-        </>
+        </>   
     )
 }
 
@@ -159,4 +202,8 @@ function isNumeric(arg0: string) {
     else{
         return false; //not a number
     }
+}
+
+function sleep(ms:number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
 }

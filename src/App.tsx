@@ -7,7 +7,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import successLogo from './assets/success-filled-svgrepo-com.svg'
 import Recover from './components/Recover/Recover';
 import Footer from './components/misc/Footer';
-import LoginNavbar from './components/Login/LoginNavbar';
+import LoginNavbar from './components/Login/Navbar';
 
 
 var snackable = true;

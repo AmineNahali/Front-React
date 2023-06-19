@@ -1,4 +1,4 @@
-import LoginNavbar from "../Login/LoginNavbar";
+import LoginNavbar from "../Login/Navbar";
 import Footer from "../misc/Footer";
 import "./Recover.css";
 

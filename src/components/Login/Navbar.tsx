@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./LoginNavbar.css";
+import "./Navbar.css";
 
 const LoginNavbar = () => {
     const nav2 = useNavigate();
