@@ -17,6 +17,7 @@
     background-size: 90% 70%;
     background-position: center;
     background-repeat: no-repeat;
+    background-blend-mode:saturation(100%);
     filter: contrast(100%);
 }
 .navLogo:hover{

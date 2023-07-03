@@ -1,10 +1,9 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from './components/Login/Login';
-import Dashboard from './components/Dashboard/Homepage';
+import Dashboard from './components/Homepage/Homepage';
 import Register from './components/Register/Register';
-import { configureStore } from "@reduxjs/toolkit";
-import successLogo from './assets/success-filled-svgrepo-com.svg'
+//import { configureStore } from "@reduxjs/toolkit";
 import Recover from './components/Recover/Recover';
 import Footer from './components/misc/Footer';
 import LoginNavbar from './components/Login/Navbar';

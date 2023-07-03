@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Homepage.css';
+import pic1 from "../../assets/pic1.png"
 
 const Dashboard = () => {
 
@@ -47,6 +48,16 @@ const Dashboard = () => {
                                     <div className='screen1Table'>
                                     </div>
                                 </td>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div className='screen2' style={{ transform: transH3 }}>
+                        <table className='t2' >
+                            <tbody>
+                                <tr>
+                                    <td className='t2L'><img className='pic1' src={pic1}></img></td>
+                                    <td className='t2R' ></td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>

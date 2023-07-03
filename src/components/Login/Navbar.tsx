@@ -11,7 +11,7 @@ const LoginNavbar = () => {
             <table className="navTable">
                 <tbody>
                     <tr>
-                        <td className="navLogo" onClick={()=>{nav2("/")}}></td>
+                        <td className="navLogo" style={{filter: "contrast(100%)"}} onClick={()=>{nav2("/")}}></td>
                         <td>
                             <div className="registerOptions">
                                 Already have an account ?<a onClick={()=>{nav2("/login")}} className="anchor">  Login here</a>

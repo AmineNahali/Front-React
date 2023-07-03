@@ -12,17 +12,17 @@ import bg4 from "./../../assets/tiles/4.png";
 import bg5 from "./../../assets/tiles/5.png";
 import bg6 from "./../../assets/tiles/6.png";
 import bg7 from "./../../assets/tiles/7.png";
+import CustomCaptcha from "../CustomCaptcha/CustomCaptcha";
 
 var bgs:string[] = [bg1,bg2,bg3,bg4,bg5,bg6,bg7,bg0];
 
-var red:string = "#ED2B2A"
+var red:string = "#ED2B2A";
 
 const Register = () => {
-    
     const date = new Date();
     let year = date.getFullYear();
 
-    const [bg, setBg] = useState(bg2);
+    const [bg, setBg] = useState(bg6);
     const [bgp, setBgp] = useState(0);
     var bgdist:number = 1200;
     const [bgx, setBgX] = useState(0);
@@ -72,8 +72,9 @@ const Register = () => {
             case bg3: setBg(bg4);break;
             case bg4: setBg(bg5);break;
             case bg5: setBg(bg6);break;
-            case bg6: setBg(bg7);break;
-            case bg7: setBg(bg2);break;
+            
+            case bgs[5]: setBg(bgs[6]);break;
+            case bgs[6]: setBg(bgs[5]);break;
         }
         clearInterval(animation1);
     },5000);
@@ -98,8 +99,8 @@ const Register = () => {
         <table className="tableReg">
         <tbody>
         <tr>
-            <td className="parodyleft" style={{width:`${parodyWidth}px`,backgroundImage:"url(" + bg + ")", backgroundPosition:`${bgx}px ${bgy}px`}}>
-
+            <td className="parodyleft" style={{width:`${parodyWidth}px`,backgroundImage:"url(" + bg + ")",backgroundPosition:`${bgx}px ${bgy}px`}}>
+                <CustomCaptcha/>
             </td>
             <td className="parodyright" style={{ 'width': '344px' }}>
                 <h3 className='titleLogin'>Join us !</h3> 
