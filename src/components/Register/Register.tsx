@@ -68,11 +68,6 @@ const Register = () => {
 
     var animation1:number = setInterval(()=>{ //Change background animation
         switch(bg){
-            case bg2: setBg(bg3);break;
-            case bg3: setBg(bg4);break;
-            case bg4: setBg(bg5);break;
-            case bg5: setBg(bg6);break;
-            
             case bgs[5]: setBg(bgs[6]);break;
             case bgs[6]: setBg(bgs[5]);break;
         }

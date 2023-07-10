@@ -7,12 +7,14 @@ import visibleNo from "../../assets/hiddenpw.svg";
 import { useNavigate } from 'react-router-dom';
 import { sleep } from "../../App";
 import { } from '@reduxjs/toolkit';
+import { Axios } from 'axios';
 
-
+const axios = new Axios();
 var visibility = visibleNo;
+
 const Login = () => {
 
-  const [bx, setBx]= useState('');
+  const [bx, setBx] = useState('');
   const loginNavigator = useNavigate();
   const [username, setUserName] = useState('');
   const [password, setPassWord] = useState('');
@@ -25,13 +27,6 @@ const Login = () => {
   const date = new Date();
   let year = date.getFullYear();
 
-  const login = (u: string, p: string) => {
-    if (u == "123" && p == "123") {
-      return true;
-    }
-    return false;
-  }
-
   const nav = (r: string) => {
     document.querySelector(".Login")?.classList.remove("loaded");
     setTimeout(() => {
@@ -40,9 +35,38 @@ const Login = () => {
     }, 100);
   }
 
+  const validUsername = (u: string) => {
+    var tmp: string = u;
+    let reg: RegExp = /\p{P}/gu;
+    var testplus = "$£¤+=|`^~".split('');
+
+    var flag1 = true;
+    if ((tmp.length < 5 || tmp.length > 50) && tmp != "") { //username must be between 5-50 characters.
+      flag1 = false;
+    }
+    var flag2 = true;
+    testplus.forEach(e => {
+      if (tmp.split('').includes(e)) { //username must not contain punctuations
+        flag2 = false;
+      }
+    });
+    var flag3 = true;
+    if (reg.test(tmp)) { // check if the username contains punctuation
+      flag3 = false;
+    }
+    var flag4 = true;
+    if (isNumeric(tmp[0])) { // check if the username starts with a number
+      flag4 = false;
+    }
+    if (flag1 && flag2 && flag3 && flag4) {
+      return true;
+    } else { return false }
+  }
+
   const authenticate = async () => {
     setButtonEnabled(true);
-    if (login(username, password)) { //1: successful login
+
+    if (validUsername(username) && password.length <= 8) { //1: successful login
       nav('/');
     }
     else { //2: failed login
@@ -80,7 +104,7 @@ const Login = () => {
   }, 150);
   return (
     <>
-      <div id='Login' className="Login" style={{'opacity':logOpacity}}>
+      <div id='Login' className="Login" style={{ 'opacity': logOpacity }}>
         <div className="login">
           <form id='loginForm' autoComplete='off'>
             <h4 className='titleLogin'>Login to X4Hire</h4>
@@ -89,7 +113,7 @@ const Login = () => {
                 <tr>
                   <td className="filll">
                     <img id='usernameLogo' src={usrLogo} />
-                    <input autoFocus itemID='username' id='username' type='text' placeholder='username' value={username}
+                    <input autoFocus itemID='username' id='username' type='text' placeholder='username or email' value={username}
                       style={{ 'border': borderInput }}
                       onChange={event => setUserName(event.target.value)}
                       onInput={() => { setBorderInput(''); }}
@@ -130,18 +154,16 @@ const Login = () => {
             </div>
             <a className='forgot anchor' onClick={() => { nav('/recover'); }}>Forgot password</a>
             <br></br>
-            <input style={{ 'position': 'relative', 'left': positionLeft,'boxShadow':bx}} className='authenticate' id='authenticate' type="button" value='Authenticate' disabled={buttonEnabled}
+            <input style={{ 'position': 'relative', 'left': positionLeft, 'boxShadow': bx }} className='authenticate' id='authenticate' type="button" value='Authenticate' disabled={buttonEnabled}
               onClick={() => {
-                
                 setButtonEnabled(true);
                 authenticate();
                 setButtonEnabled(false);
-                
               }} />
           </form>
         </div>
         <div className='gotoregister'>
-          Need an account ? <a style={{'marginLeft':'10px'}} className='anchor' onClick={() => { nav('/register') }} >Register now</a><br />
+          Need an account ? <a style={{ 'marginLeft': '10px' }} className='anchor' onClick={() => { nav('/register') }} >Register now</a><br />
         </div>
         <div style={{ 'fontSize': '12px', 'marginTop': '10px' }}>
           X4Hire - {year}
@@ -150,4 +172,14 @@ const Login = () => {
     </>
   )
 }
+
+function isNumeric(arg0: string) {
+  if (arg0.match(/^-?\d+$/) || arg0.match(/^\d+\.\d+$/)) {
+    return true; // is an integer(1st condition) or float(2nd condition) .. (positive/negative check already included in the regex so don't worry)
+  }
+  else {
+    return false; //not a number
+  }
+}
+
 export default Login;
