@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Homepage.css';
+import { SearchBar } from './serchbar/SearchBar';
 
 const Dashboard = () => {
+    
     //STATES
     const dashboardNavigator = useNavigate();
     const [opacity, setOpacity] = useState('0');
@@ -23,6 +25,7 @@ const Dashboard = () => {
         return (
             <div className='homepage' style={{ 'opacity': opacity }}>
                 <div className='home'>
+                    <SearchBar />
                     <div className='screen1'>
                         <table className='t1' style={{ transform: "translateY(" + (-transH3) + "px)" }}>
                             <tbody>

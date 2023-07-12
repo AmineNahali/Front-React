@@ -7,6 +7,8 @@ import Register from './components/Register/Register';
 import Recover from './components/Recover/Recover';
 import Footer from './components/misc/Footer';
 import LoginNavbar from './components/Login/Navbar';
+import { SnackbarProvider, enqueueSnackbar } from 'notistack';
+import { string } from 'zod';
 
 
 var snackable = true;
@@ -24,7 +26,8 @@ const App = () => {
           <Route path="/recover"  element={<><LoginNavbar />   <Recover/>  <Footer/>  </>}  />
           <Route path="/*"        element={<>404 buddy</>}  />
         </Routes>
-      </BrowserRouter>      
+      </BrowserRouter>
+      <SnackbarProvider maxSnack={6} autoHideDuration={3000} preventDuplicate />    
     </div>
   )
 }
@@ -34,4 +37,7 @@ export function sleep(ms: number) {
   return new Promise(resolve => { return setTimeout(resolve, ms); });
 }
 
+export function toast(message:string, x:any){
+  enqueueSnackbar(message,{variant:x});
+}
 export default App;

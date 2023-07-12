@@ -9,6 +9,7 @@ import { sleep } from "../../App";
 import { } from '@reduxjs/toolkit';
 import {z} from "zod";
 import { Axios } from 'axios';
+import { toast } from '../../App';
 
 const axios = new Axios();
 var visibility = visibleNo;
@@ -42,7 +43,7 @@ const Login = () => {
     var testplus = "$£¤+=|`^~".split('');
 
     var flag1 = true;
-    if ((tmp.length < 5 || tmp.length > 50) && tmp != "") { //username must be between 5-50 characters.
+    if ((tmp.length < 5 || tmp.length > 50)) { //username must be between 5-50 characters.
       flag1 = false;
     }
     var flag2 = true;
@@ -61,7 +62,7 @@ const Login = () => {
     }
     if (flag1 && flag2 && flag3 && flag4) {
       return true;
-    } else { return false }
+    } else { return false; }
   }
 
   const authenticate = async () => {
@@ -69,12 +70,26 @@ const Login = () => {
 
     if ((validUsername(username) || isEmail(username)) && password.length >= 8)
     { //1: successful login
+      toast("Login successful.","success");
       nav('/');
     }
     else { //2: failed login
+      if(username=="" && password==""){
+        toast("Missing Credentials.","error");
+      }
+      else if (!validUsername(username) && password != ""){
+        toast("Invalid Username.", "error");
+      }else if (validUsername(username) && password == ""){
+        toast("Missing Password.", "error");
+      }else{
+        toast("An Error has occured.", "error");
+      }
+      //RED EFFECT ON INPUT
       setBx('0px 0px 0.5rem #D21312');
       setBorderInput('2px solid #D21312');
       setUserName(''); setPassWord('');
+
+      //SHAKE THE BUTTON
       var offset: number = 0;
       var rightOff: number = 15;
       var leftOff: number = -15;
