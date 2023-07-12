@@ -7,6 +7,7 @@ import visibleNo from "../../assets/hiddenpw.svg";
 import { useNavigate } from 'react-router-dom';
 import { sleep } from "../../App";
 import { } from '@reduxjs/toolkit';
+import {z} from "zod";
 import { Axios } from 'axios';
 
 const axios = new Axios();
@@ -35,7 +36,7 @@ const Login = () => {
     }, 100);
   }
 
-  const validUsername = (u: string) => {
+  const validUsername = (u: any) => {
     var tmp: string = u;
     let reg: RegExp = /\p{P}/gu;
     var testplus = "$£¤+=|`^~".split('');
@@ -55,7 +56,7 @@ const Login = () => {
       flag3 = false;
     }
     var flag4 = true;
-    if (isNumeric(tmp[0])) { // check if the username starts with a number
+    if (isNumeric(tmp)) { // check if the username starts with a number
       flag4 = false;
     }
     if (flag1 && flag2 && flag3 && flag4) {
@@ -66,7 +67,8 @@ const Login = () => {
   const authenticate = async () => {
     setButtonEnabled(true);
 
-    if (validUsername(username) && password.length <= 8) { //1: successful login
+    if ((validUsername(username) || isEmail(username)) && password.length >= 8)
+    { //1: successful login
       nav('/');
     }
     else { //2: failed login
@@ -174,12 +176,20 @@ const Login = () => {
 }
 
 function isNumeric(arg0: string) {
-  if (arg0.match(/^-?\d+$/) || arg0.match(/^\d+\.\d+$/)) {
-    return true; // is an integer(1st condition) or float(2nd condition) .. (positive/negative check already included in the regex so don't worry)
-  }
-  else {
+  if (arg0 != "") {
+    if (arg0.match(/^-?\d+$/) || arg0.match(/^\d+\.\d+$/)) {
+      return true; // is an integer(1st condition) or float(2nd condition) .. (positive/negative check already included in the regex so don't worry)
+    }
+    else {
+      return false; //not a number
+    }
+  } else {
     return false; //not a number
   }
 }
 
+export function isEmail(x: string) {
+  const emailSchema = z.object({ email: z.string().email().min(5) })
+  return emailSchema.safeParse({ email: x }).success;
+}
 export default Login;
