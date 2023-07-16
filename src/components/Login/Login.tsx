@@ -7,24 +7,23 @@ import visibleNo from "../../assets/hiddenpw.svg";
 import { useNavigate } from 'react-router-dom';
 import { sleep } from "../../App";
 import { } from '@reduxjs/toolkit';
-import {z} from "zod";
-import { Axios } from 'axios';
+import { z } from "zod";
+import axios from 'axios';
 import { toast } from '../../App';
 
-const axios = new Axios();
 var visibility = visibleNo;
 
 const Login = () => {
 
-  const [bx, setBx] = useState('');
   const loginNavigator = useNavigate();
-  const [username, setUserName] = useState('');
-  const [password, setPassWord] = useState('');
-  const [borderInput, setBorderInput] = useState('');
+  const [bx, setBx                      ] = useState('');  
+  const [username, setUserName          ] = useState('');
+  const [password, setPassWord          ] = useState('');
+  const [borderInput, setBorderInput    ] = useState('');
   const [passwordShown, setPasswordShown] = useState(false);
-  const [positionLeft, setPositionLeft] = useState('0');
+  const [positionLeft, setPositionLeft  ] = useState('0');
   const [buttonEnabled, setButtonEnabled] = useState(false);
-  const [logOpacity, setLogOpacity] = useState('0');
+  const [logOpacity, setLogOpacity      ] = useState('0');
 
   const date = new Date();
   let year = date.getFullYear();
@@ -57,7 +56,7 @@ const Login = () => {
       flag3 = false;
     }
     var flag4 = true;
-    if (isNumeric(tmp)) { // check if the username starts with a number
+    if (isNumeric2(tmp)) { // check if the username starts with a number
       flag4 = false;
     }
     if (flag1 && flag2 && flag3 && flag4) {
@@ -68,26 +67,42 @@ const Login = () => {
   const authenticate = async () => {
     setButtonEnabled(true);
 
-    if ((validUsername(username) || isEmail(username)) && password.length >= 8)
-    { //1: successful login
-      toast("Login successful.","success");
-      nav('/');
+    if ((validUsername(username) || isEmail(username)) && password.length >= 8) { //1: VALID CREDENTIALS
+      axios.post('http://localhost:3000/api/user/login/', {
+        username: username,
+        password: password
+      })
+      .then((res: any) => res.data)
+      .then((data: any) => {
+        if (data.success) {
+          toast("Login successful."// + data.serverTime
+          ,"success");
+          nav('/');
+        }
+        else {
+          toast(data.serverTime, "error");
+        }
+      })
+      .catch((error) => {
+        toast("Connexion Error.", "error");
+      });
     }
-    else { //2: failed login
-      if(username=="" && password==""){
-        toast("Missing Credentials.","error");
+    else { //2: INVALID CREDENTIALS
+      if (username == "" && password == "") {
+        toast("Missing Credentials.", "error");
       }
-      else if (!validUsername(username) && password != ""){
+      else if (!validUsername(username) && password != "") {
         toast("Invalid Username.", "error");
-      }else if (validUsername(username) && password == ""){
+      } else if (validUsername(username) && password == "") {
         toast("Missing Password.", "error");
-      }else{
+      } else {
         toast("An Error has occured.", "error");
       }
       //RED EFFECT ON INPUT
       setBx('0px 0px 0.5rem #D21312');
       setBorderInput('2px solid #D21312');
-      setUserName(''); setPassWord('');
+      setUserName('');
+      setPassWord('');
 
       //SHAKE THE BUTTON
       var offset: number = 0;
@@ -190,7 +205,7 @@ const Login = () => {
   )
 }
 
-function isNumeric(arg0: string) {
+function isNumeric2(arg0: string) {
   if (arg0 != "") {
     if (arg0.match(/^-?\d+$/) || arg0.match(/^\d+\.\d+$/)) {
       return true; // is an integer(1st condition) or float(2nd condition) .. (positive/negative check already included in the regex so don't worry)

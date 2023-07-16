@@ -4,11 +4,11 @@ import './Homepage.css';
 import { SearchBar } from './serchbar/SearchBar';
 
 const Dashboard = () => {
-    
+    window.scroll(0,0);
     //STATES
     const dashboardNavigator = useNavigate();
     const [opacity, setOpacity] = useState('0');
-    const [transH3, setTransH3] = useState(-100)
+    const [transH3, setTransH3] = useState(-100);
 
     //METHODS (NO EXPORT)
     const checkLogin = () => {
@@ -25,7 +25,7 @@ const Dashboard = () => {
         return (
             <div className='homepage' style={{ 'opacity': opacity }}>
                 <div className='home'>
-                    <SearchBar />
+                    <SearchBar/>
                     <div className='screen1'>
                         <table className='t1' style={{ transform: "translateY(" + (-transH3) + "px)" }}>
                             <tbody>

@@ -1,9 +1,62 @@
-.searchbar{
+.searchbar {
     border-radius: 10px;
-    margin-top:48px;
+    margin-top: 48px;
     margin-left: auto;
     margin-right: auto;
     width: 1140px;
-    height: 48px;
+    height: 52px;
     background-color: #242424;
+    transition: transform 400ms;
+}
+.searchbartable {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1100px;
+    height: fit-content;
+}
+.search {
+    float: right;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    padding-left: 30px;
+    border: 2px solid transparent;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+    transition: border 0.25s;
+    transition: width .1s linear;
+    width: 120px;
+    height: 32px;;
+    border: 2px solid #646cff;
+}
+.search:focus{
+    width: 260px;
+}
+.submitsearch {
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    height: 37px;
+    background: #646cff;
+    width: 64px;
+    position: relative;
+    left: -2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.searchbarlinks{
+    width: 160px;
+    background-image: url("../../../assets/magenta.png");
+    background-position: bottom left;
+    background-repeat: no-repeat;
+    background-size:0% 5px;
+    transition: background-size 400ms;
+}
+.searchbarlinks:hover{
+    background-size:100% 5px;
+}
+.srchsvg {
+    width: 34px;
+    height: 34px;
 }
