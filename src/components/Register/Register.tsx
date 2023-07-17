@@ -43,10 +43,10 @@ const Register = () => {
     const [borderInputPasswordRepeat, setBorderInputPasswordRepeat] = useState('');
 
     //Warnings opacity (show / hide)
-    const [usernameWarningOpcacity, setUsernameWarningOpcacity] = useState('0');
-    const [emailWarningOpcacity, setEmailWarningOpcacity] = useState('0');
-    const [passWarningOpcacity, setPassWarningOpcacity] = useState('0');
-    const [repeatPassWarningOpcacity, setRepeatPassWarningOpcacity] = useState('0');
+    const [usernameWarningOpacity, setUsernameWarningOpacity] = useState('0');
+    const [emailWarningOpacity, setEmailWarningOpacity] = useState('0');
+    const [passWarningOpacity, setPassWarningOpacity] = useState('0');
+    const [repeatPassWarningOpacity, setRepeatPassWarningOpacity] = useState('0');
 
     //Warnings messages
     const [usernameWarningMessage, setUsernameWarningMessage] = useState('');
@@ -66,7 +66,7 @@ const Register = () => {
 
         var arr = tmp.split('');
         var nums = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-        var testplus = "$£¤+=|`^~".split('');
+        var testplus = ["$","£","¤","+","=","|","`","^","~"];
 
         var flag1 = false; // check if the username contains punctuation (out of regex capabilities)
         testplus.forEach(e => {
@@ -138,39 +138,39 @@ return (
                 setBorderInputUsername("");
                 setUsernameWarningMessage("");
                 setColorUsername("white");
-                setUsernameWarningOpcacity("0");
+                setUsernameWarningOpacity("0");
                 var arr = tmp.split('');
                 var testplus = "$£¤+=|`^~".split('');
                 if ((tmp.length < 5 || tmp.length > 50) && tmp != "") {
                     setBorderInputUsername("2px solid #D21312");
                     setUsernameWarningMessage("username must be between 5-50 characters.");
                     setColorUsername(red);
-                    setUsernameWarningOpcacity("1");
+                    setUsernameWarningOpacity("1");
                 }
                 testplus.forEach(e => {
                     if (arr.includes(e)) {
                         setBorderInputUsername("2px solid #D21312");
                         setUsernameWarningMessage("username must not contain punctuations");
                         setColorUsername(red);
-                        setUsernameWarningOpcacity("1");
+                        setUsernameWarningOpacity("1");
                     }
                 });
                 if (reg.test(tmp)) { // check if the username contains punctuation
                     setBorderInputUsername("2px solid #D21312");
                     setUsernameWarningMessage("username must not contain punctuations");
                     setColorUsername(red);
-                    setUsernameWarningOpcacity("1");
+                    setUsernameWarningOpacity("1");
                 }
                 if (isNumeric(tmp[0])) { // check if the username starts with a number
                     setBorderInputUsername("2px solid #D21312");
                     setUsernameWarningMessage("username must not start with a number");
                     setColorUsername(red);
-                    setUsernameWarningOpcacity("1");
+                    setUsernameWarningOpacity("1");
                 }
             }}
             onMouseOver={() => { setBorderInputUsername(''); }}
         />
-        <div className="warningInput" style={{ 'opacity': usernameWarningOpcacity, 'color': colorUsername }}>{usernameWarningMessage}</div>
+        <div className="warningInput" style={{ 'opacity': usernameWarningOpacity, 'color': colorUsername }}>{usernameWarningMessage}</div>
     
         {/* EMAIL */}
         <label className="redAsterisk">*</label>
@@ -181,57 +181,85 @@ return (
                 setBorderInputEmail("");
                 setEmailWarningMessage("");
                 setColorEmail("white");
-                setEmailWarningOpcacity("0");
+                setEmailWarningOpacity("0");
     
                 if (!isEmail(event.target.value) && event.target.value != "") {
                     setBorderInputEmail("2px solid #D21312");
                     setEmailWarningMessage("please provide a valid email");
                     setColorEmail(red);
-                    setEmailWarningOpcacity("1");
+                    setEmailWarningOpacity("1");
                 }
             }}
             onMouseOver={() => { setBorderInputEmail(''); }}
         />
-        <div className="warningInput" style={{ 'opacity': emailWarningOpcacity, 'color': colorEmail }}>{emailWarningMessage}</div>
+        <div className="warningInput" style={{ 'opacity': emailWarningOpacity, 'color': colorEmail }}>{emailWarningMessage}</div>
     
         {/* PASSWORD */}
         <label className="redAsterisk">*</label>
         <input autoComplete='off' className='registerInput' type='password' placeholder='password' value={passwordReg}
             style={{ 'border': borderInputPassword }}
             onChange={event => {
-                setPasswordReg(event.target.value);
-                setBorderInputPassword("");
-                setPassWarningMessage("");
-                setColorPass("white");
-                setPassWarningOpcacity("0");
-                if (event.target.value.length > 0 && event.target.value != "") {
+                    setPasswordReg(event.target.value);
+                    setBorderInputPassword("");
+                    setPassWarningMessage("");
+                    setColorPass("white");
+                    setPassWarningOpacity("0");
+                if (event.target.value.length < 8 && event.target.value != "") {
                     setBorderInputPassword("2px solid #D21312");
                     setPassWarningMessage("password should be 8 letters at least.");
                     setColorPass(red);
-                    setPassWarningOpcacity("1");
+                    setPassWarningOpacity("1");
                 }
                 if (!validpassword(event.target.value) && event.target.value != "") {
                     setBorderInputPassword("2px solid #D21312");
                     setPassWarningMessage("numbers and special characters are required !");
                     setColorPass(red);
-                    setPassWarningOpcacity("1");
+                    setPassWarningOpacity("1");
+                }
+                if (event.target.value != repPasswordReg) {
+                    setBorderInputPasswordRepeat("2px solid #D21312");
+                    setRepeatPassWarningMessage("the passwords do not match");
+                    setColorPassRepeat(red);
+                    setRepeatPassWarningOpacity("1");
+                }
+                if (event.target.value == "" || repPasswordReg == "" || event.target.value == repPasswordReg) {
+                    setBorderInputPasswordRepeat("");
+                    setRepeatPassWarningMessage("");
+                    setColorPassRepeat("white");
+                    setRepeatPassWarningOpacity("0");
                 }
             }}
             onMouseOver={() => { setBorderInputPassword(''); }}
         />
-        <div className="warningInput" style={{ 'opacity': passWarningOpcacity, 'color': colorPass }}>{passWarningMessage}</div>
+        <div className="warningInput" style={{ 'opacity': passWarningOpacity, 'color': colorPass }}>{passWarningMessage}</div>
     
         {/* REPEAT PASSWORD */}
         <label className="redAsterisk">*</label>
         <input autoComplete='off' className='registerInput' type='password' placeholder='repeat password' value={repPasswordReg}
             style={{ 'border': borderInputPasswordRepeat }}
-            onChange={event => setRepPasswordReg(event.target.value)}
+            onChange={event => {
+                setRepPasswordReg(event.target.value);
+                setBorderInputPasswordRepeat("");
+                setRepeatPassWarningMessage("");
+                setColorPassRepeat("white");
+                setRepeatPassWarningOpacity("0");
+                if (event.target.value != passwordReg && passwordReg != "") {
+                    setBorderInputPasswordRepeat("2px solid #D21312");
+                    setRepeatPassWarningMessage("the passwords do not match");
+                    setColorPassRepeat(red);
+                    setRepeatPassWarningOpacity("1");
+                }else{
+                    setBorderInputPasswordRepeat("");
+                    setRepeatPassWarningMessage("");
+                    setColorPassRepeat("white");
+                    setRepeatPassWarningOpacity("0");
+                }
+            }}
             onMouseOver={() => { 
                 setBorderInputPasswordRepeat('');
-                
             }}
         />
-        <div className="warningInput" style={{ 'opacity': repeatPassWarningOpcacity, 'color': colorPassRepeat }}>{repeatPassWarningMessage}</div>
+        <div className="warningInput" style={{ 'opacity': repeatPassWarningOpacity, 'color': colorPassRepeat }}>{repeatPassWarningMessage}</div>
     
         {/* TERMS OF SERVICE */}
         <div className="lineAccept">By clicking 'Continue' you agree to our terms of service which you can read <a className="minilink">here</a>.</div>
