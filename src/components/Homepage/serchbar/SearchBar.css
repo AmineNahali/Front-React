@@ -1,11 +1,11 @@
 .searchbar {
-    border-radius: 10px;
+    border-radius: 25px;
     margin-top: 48px;
     margin-left: auto;
     margin-right: auto;
     width: 1140px;
     height: 52px;
-    background-color: #242424;
+    background-color:#242424;
     transition: transform 400ms;
 }
 .searchbartable {
@@ -40,10 +40,15 @@
     background: #646cff;
     width: 64px;
     position: relative;
-    left: -2px;
+    left: 11px;
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+}
+.search{
+    position: relative;
+    left: 13px;
 }
 .searchbarlinks{
     width: 160px;
