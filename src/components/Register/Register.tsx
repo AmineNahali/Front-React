@@ -13,6 +13,8 @@ import bg7 from "./../../assets/tiles/7.png";
 import CustomCaptcha from "../CustomCaptcha/CustomCaptcha";
 import { isEmail } from "../Login/Login";
 
+import axios from 'axios';
+
 var bgs: string[] = [bg1, bg2, bg3, bg4, bg5, bg6, bg7, bg0];
 
 var red: string = "#ED2B2A";
@@ -143,7 +145,7 @@ return (
                 var testplus = "$£¤+=|`^~".split('');
                 if ((tmp.length < 5 || tmp.length > 50) && tmp != "") {
                     setBorderInputUsername("2px solid #D21312");
-                    setUsernameWarningMessage("username must be between 5-50 characters.");
+                    setUsernameWarningMessage("username must be between 5-50 letters long.");
                     setColorUsername(red);
                     setUsernameWarningOpacity("1");
                 }
@@ -204,9 +206,9 @@ return (
                     setPassWarningMessage("");
                     setColorPass("white");
                     setPassWarningOpacity("0");
-                if (event.target.value.length < 8 && event.target.value != "") {
+                if (event.target.value.length < 8 && event.target.value.length > 64 && event.target.value != "") {
                     setBorderInputPassword("2px solid #D21312");
-                    setPassWarningMessage("password should be 8 letters at least.");
+                    setPassWarningMessage("password should be between 8-64 letters long.");
                     setColorPass(red);
                     setPassWarningOpacity("1");
                 }

@@ -24,7 +24,10 @@ export const SearchBar = () => {
                         <td className="searchbarlinks">
                         LINK
                         </td>
-
+                        <td className="searchbarlinks">
+                        LINK
+                        </td>
+                        
                         <td><input className="search" type="text" placeholder="Search" /></td>
                         <td style={{width:"40px"}}><div className="submitsearch"><img className="srchsvg" src={srchsvg}></img></div></td>
                     </tr>

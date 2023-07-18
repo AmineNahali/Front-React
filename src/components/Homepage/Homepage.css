@@ -87,15 +87,15 @@ h3 {
 }
 
 .t2 {
-    border-radius: 15px;
+    border-radius: 5px;
     background-color: #242424;
     height: 320px;
     width: 1140px;
 }
 
 .t2L {
-    border-top-left-radius: 15px;
-    border-bottom-left-radius: 15px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
     width: 320px;
     background: url("../../assets/pic1.png");
     background-size: 320px 320px;

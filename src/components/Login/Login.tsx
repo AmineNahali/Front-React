@@ -219,7 +219,7 @@ function isNumeric2(arg0: string) {
 }
 
 export function isEmail(x: string) {
-  const emailSchema = z.object({ email: z.string().email().min(5) })
+  const emailSchema = z.object({ email: z.string().email().min(5).max(64) })
   return emailSchema.safeParse({ email: x }).success;
 }
 export default Login;
