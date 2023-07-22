@@ -89,7 +89,7 @@ const Register = () => {
         if ((tmp.length < 5 || tmp.length > 50) && tmp != "") {
             flag1 = false;
             setBorderInputUsername("2px solid #D21312");
-            setUsernameWarningMessage("username must be between 5-50 letters long.");
+            setUsernameWarningMessage("username must be 5-50 letters long.");
             setColorUsername(red);
             setUsernameWarningOpacity("1");
         } else {
@@ -102,7 +102,7 @@ const Register = () => {
                 flag2 = false;
                 clean++;
                 setBorderInputUsername("2px solid #D21312");
-                setUsernameWarningMessage("username must not contain punctuations");
+                setUsernameWarningMessage("punctuations are not allowed");
                 setColorUsername(red);
                 setUsernameWarningOpacity("1");
             }

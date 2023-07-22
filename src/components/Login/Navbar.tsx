@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { SearchBar } from "../Homepage/serchbar/SearchBar";
 import "./Navbar.css";
 
 const LoginNavbar = () => {
@@ -28,6 +29,7 @@ const LoginNavbar = () => {
                 <tbody>
                     <tr>
                         <td className="navLogo" onClick={()=>{nav2("/")}}></td>
+                        <td><SearchBar/></td>
                         <td>
                             <div className="registerOptions">
                                 <div className="btx">

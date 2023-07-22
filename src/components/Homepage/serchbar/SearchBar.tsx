@@ -11,7 +11,7 @@ export const SearchBar = () => {
     }, 200);
 
     return (
-        <div className="searchbar" style={{ transform: "translateY(" + (-transH3) + "px)" }}>
+        <div className="searchbar">
             <table className="searchbartable" cellSpacing="0">
                 <tbody>
                     <tr>
@@ -24,12 +24,10 @@ export const SearchBar = () => {
                         <td className="searchbarlinks">
                         LINK
                         </td>
-                        <td className="searchbarlinks">
-                        LINK
-                        </td>
                         
+                        {/*
                         <td><input className="search" type="text" placeholder="Search" /></td>
-                        <td style={{width:"40px"}}><div className="submitsearch"><img className="srchsvg" src={srchsvg}></img></div></td>
+                        <td style={{width:"40px"}}><div className="submitsearch"><img className="srchsvg" src={srchsvg}></img></div></td> */}
                     </tr>
                 </tbody>
             </table>

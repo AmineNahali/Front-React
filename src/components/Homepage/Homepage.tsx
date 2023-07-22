@@ -25,7 +25,7 @@ const Dashboard = () => {
         return (
             <div className='homepage' style={{ 'opacity': opacity }}>
                 <div className='home'>
-                    <SearchBar/>
+                    
                     <div className='screen1'>
                         <table className='t1' style={{ transform: "translateY(" + (-transH3) + "px)" }}>
                             <tbody>
