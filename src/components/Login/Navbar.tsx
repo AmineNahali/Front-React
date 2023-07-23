@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { SearchBar } from "../Homepage/serchbar/SearchBar";
+import { SearchBar } from "../Homepage/searchbar/SearchBar";
 import "./Navbar.css";
 
 const LoginNavbar = () => {
