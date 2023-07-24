@@ -19,7 +19,6 @@ const Dashboard = () => {
         return true;
     }
 
-
     //RENDER
     if (checkLogin()) {
         return (
@@ -61,9 +60,7 @@ const Dashboard = () => {
 
                     <InView onChange={(inView, entry) => {
                         if (entry.isIntersecting) {
-                            setTimeout(() => {
-                                setOpacityScreen2('1'); setTransScreen2(0);
-                            }, 200)
+                            setOpacityScreen2('1'); setTransScreen2(0);
                         }
                     }}>
                         <div className='screen2' style={{ transform: "translateX(" + (-transScreen2) + "px)", opacity: opacityScreen2 }}>

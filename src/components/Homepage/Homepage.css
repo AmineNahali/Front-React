@@ -138,16 +138,22 @@ h3 {
     border: solid 4px #181818;
 }
 
-.screen1,
-.screen2,
-.screen3 {
-    transition: transform 600ms;
+.screen1 {
+    transition: transform 400ms;
 }
 
-.t1,
+.screen2,
+.screen3 {
+    transition: transform 800ms;
+}
+
+.t1 {
+    transition: opacity 700ms;
+}
+
 .t2,
-.t3{
-    transition:  opacity 800ms;
+.t3 {
+    transition: opacity 800ms;
 }
 
 

@@ -13,6 +13,7 @@
 }
 .navLogo{
     width: 170px;
+    min-width: 170px;
     background: url("./../../assets/logo.png");
     background-size: 90% 70%;
     background-position: center;
