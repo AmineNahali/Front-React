@@ -4,6 +4,7 @@ import loading from "../../assets/robot/loading.gif";
 import "./CustomCaptcha.css"
 import submit from "../../assets/ok.svg"
 import reload from "../../assets/reload.svg"
+import { CaptchaService } from "../../services/captchaService";
 
 const CaptchaElement = () => {
 
@@ -15,9 +16,28 @@ const CaptchaElement = () => {
     const [showText, setShowText] = useState("block");
     const [showInput, setShowInput] = useState("none");
 
+    
     const getCaptcha = () => {
+        CaptchaService.reloadId();
+        fetch('http://localhost:3000/captcha/image/' + CaptchaService.id, { method: 'POST' })
+            .then(res => res.blob())
+            .then(data => {
+                setImageHeight("100px");
+                setImageWidth("200px");
+                setShowText("none");
+                setShowInput("block");
+                setImage1(URL.createObjectURL(data));
+                toast(CaptchaService.id,"success");
+            })
+            .catch((e) => {
+                toast("Connection error", "warning");
+            })
+    }
+
+    useEffect(() => {
         const timer = setTimeout(() => {
-            fetch('http://localhost:3000/captcha/image/' + randomString(), { method: 'POST' })
+            CaptchaService.reloadId();
+            fetch('http://localhost:3000/captcha/image/' + CaptchaService.id, { method: 'POST' })
                 .then(res => res.blob())
                 .then(data => {
                     setImageHeight("100px");
@@ -26,16 +46,13 @@ const CaptchaElement = () => {
                     setShowInput("block");
                     setImage1(URL.createObjectURL(data));
                     clearTimeout(timer);
+                    toast(CaptchaService.id,"success");
                 })
                 .catch((e) => {
                     toast("Connection error", "warning");
                     clearTimeout(timer);
                 })
         }, 2000)
-    }
-
-    useEffect(() => {
-        getCaptcha();
     }, [])
 
 
@@ -50,7 +67,7 @@ const CaptchaElement = () => {
 
                     <tr style={{ display: showText, color: "black" }}><td>Security check, please wait ...</td></tr>
 
-                    <tr style={{ display: showInput , transform:"scale(0.8)"}}>
+                    <tr style={{ display: showInput, transform: "scale(0.8)" }}>
                         <td style={{ height: "32px" }}>
                             <input type="text" className="captchaInput" placeholder="type the code" value={captchaCode}
                                 onChange={(event) => {
@@ -62,7 +79,7 @@ const CaptchaElement = () => {
                             <img className="captchaButton" src={submit} />
                         </td>
                         <td style={{ height: "32px", width: "32px" }}>
-                            <img className="captchaButton" src={reload} />
+                            <img className="captchaButton" src={reload} onClick={() => { getCaptcha(); }} />
                         </td>
                     </tr>
 
