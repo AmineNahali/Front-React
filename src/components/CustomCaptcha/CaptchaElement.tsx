@@ -27,7 +27,7 @@ const CaptchaElement = () => {
                 setShowText("none");
                 setShowInput("block");
                 setImage1(URL.createObjectURL(data));
-                toast(CaptchaService.id,"success");
+                //toast(CaptchaService.id,"success");
             })
             .catch((e) => {
                 toast("Connection error", "warning");
@@ -46,7 +46,6 @@ const CaptchaElement = () => {
                     setShowInput("block");
                     setImage1(URL.createObjectURL(data));
                     clearTimeout(timer);
-                    toast(CaptchaService.id,"success");
                 })
                 .catch((e) => {
                     toast("Connection error", "warning");

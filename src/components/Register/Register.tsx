@@ -15,6 +15,7 @@ import { isEmail } from "../Login/Login";
 
 import axios from 'axios';
 import { toast } from "../../App";
+import { CaptchaService } from "../../services/captchaService";
 
 var bgs: string[] = [bg1, bg2, bg3, bg4, bg5, bg6, bg7, bg0];
 
@@ -34,11 +35,11 @@ const Register = () => {
     const [regOpacity, setRegOpacity] = useState('0');
 
     //Enable / Disable form
-    const [formDisabled, setFormDisabled ] = useState(false);
+    const [formDisabled, setFormDisabled] = useState(false);
 
     //shaking the button
-    const [positionLeft, setPositionLeft  ] = useState('0');
-    const [bx, setBx                      ] = useState(''); // boxshadow of button
+    const [positionLeft, setPositionLeft] = useState('0');
+    const [bx, setBx] = useState(''); // boxshadow of button
 
     //Input content/state
     const [usernameReg, setUserNameReg] = useState('');
@@ -170,7 +171,7 @@ const Register = () => {
         setParodyWidth(400);
     }, 100);
 
-    var animation1: number = setInterval(() => { //Change background animation
+    var animation1 = setInterval(() => { //Change background animation
         switch (bg) {
             case bgs[5]: setBg(bgs[6]); break;
             case bgs[6]: setBg(bgs[5]); break;
@@ -178,7 +179,7 @@ const Register = () => {
         clearInterval(animation1);
     }, 5000);
 
-    var animation2: number = setInterval(() => { // Move background animation
+    var animation2 = setInterval(() => { // Move background animation
         setBgp(bgp + 1);
         if (bgp <= (bgdist / 6)) { setBgX(bgx + 1); setBgY(bgy + 1); }
         if (bgp > (bgdist / 6) && bgp <= (bgdist / 6) * 2) { setBgX(bgx + 1); }
@@ -255,28 +256,28 @@ const Register = () => {
                                             setPassWarningMessage("");
                                             setColorPass("white");
                                             setPassWarningOpacity("0");
-                                            
+
                                             if (event.target.value.length < 8 && event.target.value.length > 64 && event.target.value != "") {
                                                 setPasswordRegValid(false);
                                                 setBorderInputPassword("2px solid #D21312");
                                                 setPassWarningMessage("password should be between 8-64 letters long.");
                                                 setColorPass(red);
                                                 setPassWarningOpacity("1");
-                                            }else{setPasswordRegValid(true);}
+                                            } else { setPasswordRegValid(true); }
                                             if (!validpassword(event.target.value) && event.target.value != "") {
                                                 setPasswordRegValid(false);
                                                 setBorderInputPassword("2px solid #D21312");
                                                 setPassWarningMessage("numbers and special characters are required !");
                                                 setColorPass(red);
                                                 setPassWarningOpacity("1");
-                                            }else{setPasswordRegValid(true);}
+                                            } else { setPasswordRegValid(true); }
                                             if (event.target.value != repPasswordReg) {
                                                 setRepPasswordRegValid(false);
                                                 setBorderInputPasswordRepeat("2px solid #D21312");
                                                 setRepeatPassWarningMessage("the passwords do not match");
                                                 setColorPassRepeat(red);
                                                 setRepeatPassWarningOpacity("1");
-                                            }else{
+                                            } else {
                                                 setRepPasswordRegValid(true);
                                             }
                                             if (event.target.value == "" || repPasswordReg == "" || event.target.value == repPasswordReg) {
@@ -325,52 +326,62 @@ const Register = () => {
 
                                     {/* CONTINUE BUTTON */}
                                     <input disabled={formDisabled} className='continueReg' type='button' value="Continue"
-                                    style={{ 'position': 'relative', 'left': positionLeft, 'boxShadow': bx }}
-                                    onClick={async() => {
-                                        if (
-                                            usernameRegValid &&
-                                            emailRegValid &&
-                                            passwordRegValid &&
-                                            repPasswordRegValid
-                                        ) {
-                                            setFormDisabled(true);
-                                            toast("Yessssssss","success");
-                                        }
-                                        else{
-                                            //toast("username "+usernameRegValid+" ,email "+emailRegValid+" ,password "+passwordRegValid+" ,repeat "+repPasswordRegValid
-                                            //,"error");
-                                            toast("Please check your details before proceeding.","error");
-                                            setBx('0px 0px 0.5rem #D21312');
-                                            setBorderInputUsername("2px solid #D21312");
-                                            setBorderInputEmail("2px solid #D21312");
-                                            setBorderInputPassword("2px solid #D21312");
-                                            setBorderInputPasswordRepeat("2px solid #D21312");
-                                            //SHAKE THE BUTTON
-                                            var offset: number = 0;
-                                            var rightOff: number = 15;
-                                            var leftOff: number = -15;
-                                            var i = 0;
-                                            while (i < 3) {
-                                              while (offset < rightOff) {
-                                                offset += 2;
-                                                await sleep(1);
-                                                setPositionLeft(`${offset}px`);
-                                              }
-                                              while (offset > leftOff) {
-                                                offset -= 2;
-                                                await sleep(1);
-                                                setPositionLeft(`${offset}px`);
-                                              }
-                                              while (offset < 0) {
-                                                offset += 2;
-                                                await sleep(1);
-                                                setPositionLeft(`${offset}px`);
-                                              }
-                                              i++;
+                                        style={{ 'position': 'relative', 'left': positionLeft, 'boxShadow': bx }}
+                                        onClick={async () => {
+                                            if (
+                                                usernameRegValid &&
+                                                emailRegValid &&
+                                                passwordRegValid &&
+                                                repPasswordRegValid
+                                            ) {
+                                                if (CaptchaService.regKey == "") {
+                                                    toast("please solve the captcha first.","error");
+                                                } else {
+                                                    setFormDisabled(true);
+                                                    //Start sending registration details to backend
+                                                    axios.post('http://localhost:3000/api/user/register/', {
+                                                        username: usernameReg,
+                                                        password: passwordReg,
+                                                        email: emailReg,
+                                                        regID: CaptchaService.id,
+                                                        regKEY: CaptchaService.regKey
+                                                    })
+                                                }
+
                                             }
-                                            setBx('');
-                                        }
-                                    }} />
+                                            else {
+                                                toast("Please check your details before proceeding.", "error");
+                                                setBx('0px 0px 0.5rem #D21312');
+                                                setBorderInputUsername("2px solid #D21312");
+                                                setBorderInputEmail("2px solid #D21312");
+                                                setBorderInputPassword("2px solid #D21312");
+                                                setBorderInputPasswordRepeat("2px solid #D21312");
+                                                //SHAKE THE BUTTON
+                                                var offset: number = 0;
+                                                var rightOff: number = 15;
+                                                var leftOff: number = -15;
+                                                var i = 0;
+                                                while (i < 3) {
+                                                    while (offset < rightOff) {
+                                                        offset += 2;
+                                                        await sleep(1);
+                                                        setPositionLeft(`${offset}px`);
+                                                    }
+                                                    while (offset > leftOff) {
+                                                        offset -= 2;
+                                                        await sleep(1);
+                                                        setPositionLeft(`${offset}px`);
+                                                    }
+                                                    while (offset < 0) {
+                                                        offset += 2;
+                                                        await sleep(1);
+                                                        setPositionLeft(`${offset}px`);
+                                                    }
+                                                    i++;
+                                                }
+                                                setBx('');
+                                            }
+                                        }} />
                                 </td>
                             </tr>
                         </tbody>

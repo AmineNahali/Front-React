@@ -1,8 +1,13 @@
 export abstract class CaptchaService {         
     public static id:string;
+    public static regKey:string;
 
     public static reloadId(): void {
       this.id = randomString();
+      this.regKey = "";
+    }
+    public static setRegKey(x:string): void {
+        this.regKey = x;
     }
 }
 
