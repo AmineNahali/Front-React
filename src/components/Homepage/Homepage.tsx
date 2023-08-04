@@ -70,7 +70,17 @@ const Dashboard = () => {
                                         <td className='t2L'></td>
                                         <td className='t2R'>
                                             <div className='TextContainer' style={{ float: 'right' }}>
-
+                                                LUREM ipsum LUREM ipsum LUREM ipsum LUREM ipsum LUREM ipsum LUREM ipsum
+                                                LUREM ipsum LUREM ipsum LUREM ipsum LUREM ipsum LUREM ipsum LUREM ipsum
+                                                LUREM ipsum LUREM ipsum LUREM ipsum LUREM ipsum LUREM ipsum LUREM ipsum
+                                                LUREM ipsum LUREM ipsum LUREM ipsum LUREM ipsum LUREM ipsum LUREM ipsum
+                                                LUREM ipsum LUREM ipsum LUREM ipsum LUREM ipsum LUREM ipsum LUREM ipsum
+                                                LUREM ipsum LUREM ipsum LUREM ipsum LUREM ipsum LUREM ipsum LUREM ipsum
+                                                LUREM ipsum LUREM ipsum LUREM ipsum LUREM ipsum LUREM ipsum LUREM ipsum
+                                                LUREM ipsum LUREM ipsum LUREM ipsum LUREM ipsum LUREM ipsum LUREM ipsum
+                                                LUREM ipsum LUREM ipsum LUREM ipsum LUREM ipsum LUREM ipsum LUREM ipsum
+                                                LUREM ipsum LUREM ipsum LUREM ipsum LUREM ipsum LUREM ipsum LUREM ipsum
+                                                LUREM ipsum LUREM ipsum LUREM ipsum LUREM ipsum LUREM ipsum LUREM ipsum
                                             </div>
                                         </td>
                                     </tr>
@@ -91,7 +101,17 @@ const Dashboard = () => {
                                     <tr>
                                         <td className='t3L'>
                                             <div className='TextContainer' style={{ float: 'left' }}>
-
+                                                LUREM ipsum LUREM ipsum LUREM ipsum LUREM ipsum LUREM ipsum LUREM ipsum
+                                                LUREM ipsum LUREM ipsum LUREM ipsum LUREM ipsum LUREM ipsum LUREM ipsum
+                                                LUREM ipsum LUREM ipsum LUREM ipsum LUREM ipsum LUREM ipsum LUREM ipsum
+                                                LUREM ipsum LUREM ipsum LUREM ipsum LUREM ipsum LUREM ipsum LUREM ipsum
+                                                LUREM ipsum LUREM ipsum LUREM ipsum LUREM ipsum LUREM ipsum LUREM ipsum
+                                                LUREM ipsum LUREM ipsum LUREM ipsum LUREM ipsum LUREM ipsum LUREM ipsum
+                                                LUREM ipsum LUREM ipsum LUREM ipsum LUREM ipsum LUREM ipsum LUREM ipsum
+                                                LUREM ipsum LUREM ipsum LUREM ipsum LUREM ipsum LUREM ipsum LUREM ipsum
+                                                LUREM ipsum LUREM ipsum LUREM ipsum LUREM ipsum LUREM ipsum LUREM ipsum
+                                                LUREM ipsum LUREM ipsum LUREM ipsum LUREM ipsum LUREM ipsum LUREM ipsum
+                                                LUREM ipsum LUREM ipsum LUREM ipsum LUREM ipsum LUREM ipsum LUREM ipsum
                                             </div>
                                         </td>
                                         <td className='t3R'></td>

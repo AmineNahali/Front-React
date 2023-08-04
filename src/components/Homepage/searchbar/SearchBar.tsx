@@ -1,6 +1,5 @@
 import { useState } from "react";
 import "./SearchBar.css";
-import srchsvg from "../../../assets/search.svg";
 
 export const SearchBar = () => {
 
@@ -16,7 +15,7 @@ export const SearchBar = () => {
                 <tbody>
                     <tr>
                         <td className="searchbarlinks">
-                        LINK
+                        SERVICES
                         </td>
                         <td className="searchbarlinks">
                         LINK
@@ -24,10 +23,6 @@ export const SearchBar = () => {
                         <td className="searchbarlinks">
                         LINK
                         </td>
-                        
-                        {/*
-                        <td><input className="search" type="text" placeholder="Search" /></td>
-                        <td style={{width:"40px"}}><div className="submitsearch"><img className="srchsvg" src={srchsvg}></img></div></td> */}
                     </tr>
                 </tbody>
             </table>
